@@ -1,0 +1,25 @@
+{
+  "name": "opscope",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local-first debugger for ERC-4337 UserOperations: preflight, Anvil replay, diagnosis, reproduction bundles.",
+  "type": "module",
+  "packageManager": "pnpm@11.5.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @opscope/api --filter @opscope/web run dev",
+    "build": "pnpm --filter @opscope/web run build",
+    "start": "pnpm build && pnpm --filter @opscope/api run start",
+    "opscope": "node apps/cli/bin/opscope.mjs",
+    "contracts:build": "pnpm --filter @opscope/contracts run build",
+    "typecheck": "pnpm -r --parallel run typecheck"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * opscope tokens. Dark = charcoal instrument panel; light = chart-recorder paper.
+ * Lavender is the instrument's accent, lime means a stage passed, muted rose means it failed.
+ */
+:root,
+[data-theme="dark"] {
+  --bg: #111113;
+  --panel: #161619;
+  --raised: #1c1c20;
+  --sunken: #0d0d0f;
+  --line: #26262c;
+  --line-strong: #34343b;
+  --fg: #ecebf3;
+  --fg-2: #a9a8b6;
+  --fg-3: #706f7c;
+  --lav: #b8a8ff;
+  --lav-strong: #9c88ff;
+  --lav-ink: #17122b;
+  --lav-soft: rgb(184 168 255 / 0.12);
+  --lav-line: rgb(184 168 255 / 0.32);
+  --lime: #c3ef5d;
+  --lime-soft: rgb(195 239 93 / 0.11);
+  --lime-line: rgb(195 239 93 / 0.3);
+  --rose: #ec94a6;
+  --rose-soft: rgb(236 148 166 / 0.11);
+  --rose-line: rgb(236 148 166 / 0.34);
+  --sand: #e2c27e;
+  --sand-soft: rgb(226 194 126 / 0.11);
+  --sand-line: rgb(226 194 126 / 0.3);
+  --grid: rgb(255 255 255 / 0.045);
+  --grid-strong: rgb(255 255 255 / 0.08);
+  --glow: 0 0 18px rgb(184 168 255 / 0.35);
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 12px 32px -18px rgb(0 0 0 / 0.7);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f4f2ec;
+  --panel: #ffffff;
+  --raised: #faf9f5;
+  --sunken: #eceae3;
+  --line: #e2ded5;
+  --line-strong: #d2cdc1;
+  --fg: #19181d;
+  --fg-2: #55535e;
+  --fg-3: #87848f;
+  --lav: #6550cf;
+  --lav-strong: #523cc0;
+  --lav-ink: #ffffff;
+  --lav-soft: rgb(101 80 207 / 0.08);
+  --lav-line: rgb(101 80 207 / 0.28);
+  --lime: #3b6a00;
+  --lime-soft: rgb(110 170 20 / 0.12);
+  --lime-line: rgb(80 140 10 / 0.35);
+  --rose: #b03f59;
+  --rose-soft: rgb(176 63 89 / 0.08);
+  --rose-line: rgb(176 63 89 / 0.3);
+  --sand: #855c00;
+  --sand-soft: rgb(160 110 0 / 0.1);
+  --sand-line: rgb(160 110 0 / 0.3);
+  --grid: rgb(101 80 207 / 0.07);
+  --grid-strong: rgb(101 80 207 / 0.13);
+  --glow: 0 0 0 transparent;
+  --shadow: 0 1px 2px rgb(30 25 10 / 0.05), 0 10px 28px -20px rgb(30 25 10 / 0.25);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-raised: var(--raised);
+  --color-sunken: var(--sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-lav: var(--lav);
+  --color-lav-strong: var(--lav-strong);
+  --color-lav-ink: var(--lav-ink);
+  --color-lav-soft: var(--lav-soft);
+  --color-lav-line: var(--lav-line);
+  --color-lime: var(--lime);
+  --color-lime-soft: var(--lime-soft);
+  --color-lime-line: var(--lime-line);
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+  --color-rose-line: var(--rose-line);
+  --color-sand: var(--sand);
+  --color-sand-soft: var(--sand-soft);
+  --color-sand-line: var(--sand-line);
+  --font-display: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: var(--lav-soft);
+    color: var(--fg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--lav);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  code,
+  kbd,
+  pre,
+  .mono {
+    font-family: var(--font-mono);
+    font-feature-settings: "zero" 1;
+  }
+}
+
+@layer components {
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  /* graticule: the scope screen behind the lifecycle trace */
+  .graticule {
+    background-color: var(--sunken);
+    background-image:
+      linear-gradient(var(--grid-strong) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:
+      100% 50%,
+      25% 100%,
+      100% 12.5%,
+      6.25% 100%;
+    background-position: 0 -1px, -1px 0, 0 -1px, -1px 0;
+  }
+  .hatch {
+    background-image: repeating-linear-gradient(135deg, var(--sand-soft) 0 6px, transparent 6px 12px);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

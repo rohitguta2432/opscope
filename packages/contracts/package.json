@@ -1,0 +1,14 @@
+{
+  "name": "@opscope/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "forge build && node scripts/export-artifacts.mjs",
+    "test": "forge test -vv"
+  },
+  "dependencies": {
+    "@account-abstraction/contracts": "0.7.0",
+    "@openzeppelin/contracts": "5.0.2"
+  }
+}

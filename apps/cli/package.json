@@ -1,0 +1,23 @@
+{
+  "name": "@opscope/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "opscope": "./bin/opscope.mjs"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@opscope/api": "workspace:*",
+    "@opscope/core": "workspace:*",
+    "@opscope/diagnosis": "workspace:*",
+    "@opscope/engine": "workspace:*",
+    "@opscope/store": "workspace:*",
+    "commander": "^15.0.0",
+    "picocolors": "^1.1.1",
+    "tsx": "^4.23.15",
+    "viem": "^2.57.10"
+  }
+}

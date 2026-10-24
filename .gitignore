@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.opscope/
+bundles/
+packages/contracts/out/
+packages/contracts/cache/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+.claude/
+fixture-*.userop.json

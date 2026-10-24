@@ -1,0 +1,10 @@
+{
+  "server": { "host": "127.0.0.1", "port": 4337 },
+  "connections": [
+    { "id": "base-sepolia", "chainId": 84532, "url": "${BASE_SEPOLIA_RPC_URL}", "label": "Base Sepolia" },
+    { "id": "sepolia", "chainId": 11155111, "url": "${SEPOLIA_RPC_URL}", "label": "Sepolia" },
+    { "id": "local-anvil", "chainId": 31337, "url": "http://127.0.0.1:8545", "label": "Local Anvil :8545" }
+  ],
+  "replay": { "timeoutMs": 90000, "maxConcurrent": 2, "anvilPath": "anvil" },
+  "dataDir": ".opscope"
+}
