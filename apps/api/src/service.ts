@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { FIXTURES, InspectInputError, JobQueue, inspect, type LoadedConfig } from "@opscope/engine";
-import { short, type InspectRequest } from "@opscope/core";
+import { redactText, short, type InspectRequest } from "@opscope/core";
 import type { Session } from "@opscope/diagnosis";
 import { openStore, type Store } from "@opscope/store";
 
@@ -84,8 +84,9 @@ export class SessionService {
         });
       });
     } catch (e) {
-      const msg = e instanceof InspectInputError ? e.message : (e as Error).message;
-      this.store.update(s.id, { status: "error", error: msg, durationMs: Date.now() - t0 });
+      // viem errors can embed the RPC URL (and its key) in their details: keep the first line, then redact
+      const raw = e instanceof InspectInputError ? e.message : String((e as Error).message ?? e).split("\n")[0]!;
+      this.store.update(s.id, { status: "error", error: redactText(raw, this.cfg.secrets), durationMs: Date.now() - t0 });
     }
   }
 }

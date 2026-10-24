@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Check, CircleDashed, Cpu, HandCoins, Minus, Server, Wallet, X } from "lucide-react";
 import type { Check as CheckT } from "@opscope/core";
 import { sourceLabel, type Diagnosis, type StageOutcome } from "@opscope/diagnosis";
-import { cn } from "@/lib/utils";
+import { animScale, cn } from "@/lib/utils";
 
 const W = 1000;
 const H = 132;
@@ -83,7 +83,7 @@ export function LifecycleScope({ d, animateKey }: { d: Diagnosis; animateKey: st
   const inconclusive = d.verdict === "inconclusive";
   const total = segs.reduce((a, s) => a + s.len, 0);
   let acc = 0;
-  const DRAW = 1.5;
+  const DRAW = 1.5 * animScale();
   const checks = stages.reduce((a, s) => a + s.checks.length, 0);
   const failIdx = stages.findIndex((s) => s.status === "failed");
   const doneAt = failIdx >= 0 ? (CENTERS[failIdx]! / W) * DRAW + 0.25 : DRAW;
@@ -171,7 +171,7 @@ export function LifecycleScope({ d, animateKey }: { d: Diagnosis; animateKey: st
                   className="absolute inset-0 rounded-full border border-rose"
                   initial={{ opacity: 0.9, scale: 1 }}
                   animate={{ opacity: 0, scale: 1.9 }}
-                  transition={{ delay: doneAt, duration: 1.4, repeat: 2, ease: "easeOut" }}
+                  transition={{ delay: doneAt, duration: 1.4 * animScale(), repeat: 2, ease: "easeOut" }}
                 />
               )}
               <span
